@@ -1,0 +1,389 @@
+/* esthers-site.css - Updated with responsive design */
+
+@import url("https://fonts.googleapis.com/css2?family=Grandstander:wght@300;400;500;600;700&family=Rubik:wght@300;400;500;600;700&display=swap");
+
+@keyframes fadein {
+  0% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+@keyframes wiggle {
+  0% {
+    transform: rotate(-5deg);
+  }
+  30% {
+    transform: rotate(5deg);
+  }
+  60% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: rotate(5deg);
+  }
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes bounce-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) translateY(-50px);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1) translateY(10px);
+  }
+  70% {
+    opacity: 0.9;
+    transform: scale(0.9) translateY(-5px);
+  }
+  85% {
+    opacity: 1;
+    transform: scale(1.05) translateY(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes splash-grow {
+  0% {
+    opacity: 0;
+    transform: scale(0) translateX(-50%) rotate(-45deg);
+    transform-origin: left center;
+  }
+  30% {
+    opacity: 0.6;
+    transform: scale(0.4) translateX(-30%) rotate(-20deg);
+  }
+  60% {
+    opacity: 0.8;
+    transform: scale(1.2) translateX(-10%) rotate(5deg);
+  }
+  80% {
+    opacity: 0.9;
+    transform: scale(0.9) translateX(0%) rotate(-2deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateX(0%) rotate(0deg);
+  }
+}
+
+html {
+    overflow: hidden;
+}
+
+#home {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.home-page-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.left {
+  height: 90vh;
+  /* display: flex; */
+  align-items: center;
+  justify-content: center;
+}
+
+.emphasis-lines {
+  position: relative;
+  left: 36vw;
+  /* top: -1vw; */
+  height: 10vw;
+  animation: splash-grow 0.8s ease-out 1s both;
+}
+
+.welcome-container {
+  margin: -5vw 3vw 0vh 6vw;
+  width: 40vw;
+  animation: bounce-in 1.5s ease-out 0.5s both;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: transparent;
+}
+
+.welcome-title {
+  display: flex;
+  font-family: "Grandstander", Arial, Helvetica, sans-serif;
+  text-align: left;
+  font-size: 4.5vw;
+  color: rgb(0, 0, 0);
+  font-weight: 600;
+  /* margin: 0vw 0vw 1vw 0vw; */
+}
+
+.welcome-subtitle {
+  display: flex;
+  font-family: "Rubik", Arial, Helvetica, sans-serif;
+  text-align: left;
+  font-size: 2.75vw;
+  color: rgb(0, 0, 0);
+  font-weight: 400;
+  /* margin: 0vw 0vw 1vw 0vw; */
+}
+
+.welcome-blurb {
+  display: flex;
+  font-family: "Rubik", Arial, Helvetica, sans-serif;
+  text-align: left;
+  font-size: 2.25vw;
+  color: rgb(0, 0, 0);
+  font-weight: 375;
+  /* margin: 0vh; */
+  width: 26vw;
+}
+
+.home-images-container {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+#blob {
+  position: relative;
+  width: 50vw;
+  bottom: -30vw;
+  right: -2vw;
+  animation: fadein 2s ease, slide-in 2s ease;
+}
+
+#me {
+  position: relative;
+  width: 50vw;
+  bottom: 26vw;
+  right: -2vw;
+  animation: fadein 2s ease, slide-up 2s ease;
+}
+
+.icons-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 20vw;
+  margin: 0vw 0vw 0vw 4vw;
+}
+
+.icon {
+  height: 3.5vw;
+  width: 3.5vw;
+  margin: 2vw;
+  mix-blend-mode: multiply;
+}
+
+.icon:hover {
+  animation: wiggle 0.5s;
+}
+
+.homebutton {
+  display: inline;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  text-align: center;
+  font-size: 3rem;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+/* RESPONSIVE DESIGN */
+
+/* Large tablets and smaller laptops */
+@media screen and (max-width: 1024px) {
+  .welcome-title {
+    font-size: 6vw;
+  }
+
+  .welcome-subtitle {
+    font-size: 4vw;
+  }
+
+  .welcome-blurb {
+    font-size: 3vw;
+    width: 35vw;
+  }
+
+  .welcome-container {
+    width: 50vw;
+    margin: -5vw 2vw 0vh 4vw;
+  }
+
+  #me,
+  #blob {
+    width: 60vw;
+  }
+
+  .emphasis-lines {
+    height: 4vw;
+    left: 35vw;
+  }
+
+  .icons-container {
+    width: 25vw;
+    margin: 0vw 0vw 0vw 2vw;
+  }
+
+  .icon {
+    height: 4vw;
+    width: 4vw;
+  }
+}
+
+/* Tablets */
+@media screen and (max-width: 768px) {
+  .home-page-container {
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 5vh;
+  }
+
+  .welcome-container {
+    width: 80vw;
+    margin: 2vw;
+    text-align: center;
+    align-items: center;
+  }
+
+  .welcome-title {
+    font-size: 8vw;
+    text-align: center;
+  }
+
+  .welcome-subtitle {
+    font-size: 5.5vw;
+    text-align: center;
+  }
+
+  .welcome-blurb {
+    font-size: 4vw;
+    width: 60vw;
+    text-align: center;
+  }
+
+  .emphasis-lines {
+    display: none;
+  }
+
+  .home-images-container {
+    position: relative;
+    margin-top: 5vh;
+  }
+
+  #blob {
+    width: 90vw;
+    bottom: -10vw;
+    right: -20vw;
+  }
+
+  #me {
+    width: 90vw;
+    bottom: 20vw;
+    right: -20vw;
+  }
+
+  .icons-container {
+    width: 60vw;
+    margin: 3vw auto;
+    justify-content: space-between;
+  }
+
+  .icon {
+    height: 8vw;
+    width: 8vw;
+    margin: 1vw;
+  }
+}
+
+/* Phones */
+@media screen and (max-width: 480px) {
+  .home-page-container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .welcome-title {
+    font-size: 10vw;
+  }
+
+  .welcome-subtitle {
+    font-size: 7vw;
+  }
+
+  .welcome-blurb {
+    font-size: 5vw;
+    width: 60vw;
+  }
+
+  .emphasis-lines {
+    display: none;
+  }
+
+  .icons-container {
+    width: 80vw;
+    padding: 10px;
+    background-color: transparent;
+  }
+
+  .icon {
+    height: 10vw;
+    width: 10vw;
+  }
+
+  .home-images-container {
+    position: absolute;
+    bottom: -100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+  }
+
+  .home-image {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+
+  .blob {
+    z-index: 0;
+    bottom: -5vh;
+  }
+
+  .profile {
+    z-index: 1;
+  }
+}
