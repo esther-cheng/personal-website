@@ -60,16 +60,6 @@ html {
   animation: splash-grow 0.8s ease-out 1s both;
 }
 
-/* .welcome-subtitle {
-  display: flex;
-  font-family: "Rubik", Arial, Helvetica, sans-serif;
-  text-align: left;
-  font-size: 40px;
-  color: black;
-  font-weight: 400;
-  margin: 0 0 .4em 0;
-} */
-
 .welcome-blurb {
   display: flex;
   font-family: "Rubik", Arial, Helvetica, sans-serif;

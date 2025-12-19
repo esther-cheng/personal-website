@@ -4,17 +4,13 @@
   display: flex;
   flex-direction: column;
   overflow-y: hidden;
-  scroll-snap-align: start;
-  scroll-snap-stop: normal;
+  /* scroll-snap-align: start; */
+  /* scroll-snap-stop: normal; */
   /* animation: slide-in-left 2s ease; */
 }
 
 #table-photo {
-  height: 80%;
-  /* position: relative;
-  justify-self: start;
-  height: 130vh;
-  transform: translateY(-35vh); */
+  object-fit: contain;
 }
 
 .about-text-container {
@@ -22,8 +18,11 @@
   display: flex;
   flex-direction: column;
   /* justify-content: space-evenly; */
+  justify-content: center;
+  align-items: center;
+  overflow: scroll;
   align-items: left;
-  padding: 5vw;
+  padding: 2vw;
   text-align: center;
   line-height: 1.3;
   /* width: 60vw; */
@@ -31,15 +30,20 @@
 
 #second {
   margin-top: 5vh;
-  animation: slide-in 2s ease;
 }
-
 #second-text {
-  background-color: transparent;
+  position: absolute;
+  left: 0;
+  margin-top: 5vh;
+  width: 60vw;
+  /* animation: slide-in 2s ease; */
 }
 
 #gardens-photo {
-  justify-self: end;
+  position: absolute;
+  height: 90vh;
+  object-fit: contain;
+  right: 0;
 }
 
 .jump {
@@ -59,14 +63,18 @@
     flex-direction: row;
     justify-self: center;
     align-self: center;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     height: 90vh;
-    width: 100vw;
-    margin-top: 3vh;
-    overflow-y: hidden;
-    scroll-snap-align: start;
-    scroll-snap-stop: normal;
-    scroll-margin: 10px;
-    animation: slide-in-left 2s ease;
+    /* width: 100vw; */
+    /* margin-top: 3vh; */
+    /* overflow-y: scroll; */
+    /* scroll-snap-align: start;
+    scroll-snap-stop: normal; */
+    /* scroll-margin: 10px; */
+    /* animation: slide-in-left 2s ease; */
+  }
+
+  #second-text {
+    background-color: transparent;
   }
 }
