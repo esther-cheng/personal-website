@@ -5,95 +5,85 @@ import Header from "../components/header";
 
 export default function Interests() {
   return (
-    <div>
+    <body>
       <Header activeLink="myinterests" />
       <div className="appears">
         <h2>Here are some of my recent crochet projects!</h2>
-        <div className="crochetphotos">
+        <div className="interestphotos">
           <img
-            src="/img/brownbluesweater.jpeg"
-            alt="crochet"
-            className="interestssammy"
+            src="/img/crochet/brownbluesweater.jpeg"
+            alt="Crocheted granny square sweater in blue, cream, and brown"
+          />
+          <img src="/img/crochet/crochet_boba.png" alt="Crocheted boba drink" />
+          <img src="/img/crochet/cow.png" alt="Crocheted pink cow"  />
+          <img src="/img/crochet/owl.png" alt="Crocheted owl in Temple University colors"  />
+          <img src="/img/crochet/daisy_bag.jpeg" alt="Crocheted daisy bag in green, purple, and pink"/>
+          <img
+            src="/img/crochet/dragon.jpeg"
+            alt="Crocheted purple dragon"
+            
           />
           <img
-            src="img/crochet_boba.png"
-            alt="crochet"
-            className="interestssammy"
-          />
-          <img src="/img/cow.png" alt="crochet" className="interestssammy" />
-          <img src="/img/owl.png" alt="crochet" className="interestssammy" />
-          <img
-            src="/img/daisy_bag.jpeg"
-            alt="crochet"
-            className="interestssammy"
+            src="/img/crochet/penguin.jpeg"
+            alt="Crocheted blue and white penguin"
+            
           />
           <img
-            src="/img/dragon.jpeg"
-            alt="crochet"
-            className="interestssammy"
+            src="/img/crochet/axolotl.jpeg"
+            alt="Crocheted purple axolotl"
+            
           />
+          <img src="/img/crochet/squid.jpeg" alt="crochet"  />
           <img
-            src="/img/penguin.jpeg"
-            alt="crochet"
-            className="interestssammy"
-          />
-          <img
-            src="/img/axolotl.jpeg"
-            alt="crochet"
-            className="interestssammy"
-          />
-          <img src="/img/squid.jpeg" alt="crochet" className="interestssammy" />
-          <img
-            src="/img/mini_bee.jpeg"
-            alt="crochet"
-            className="interestssammy"
+            src="/img/crochet/mini_bee.jpeg"
+            alt="Crocheted mini bee in blue and white"
+            
           />
         </div>
 
         <h2>This is my dog, Sammy!</h2>
-        <div className="sammyphotos">
+        <div className="interestphotos">
           <img
-            src="/img/sammy_bandana.jpeg"
-            alt="sammy"
-            className="interestssammy"
+            src="/img/sammy/sammy_bandana.jpeg"
+            alt="Sammy with his fall bandana on"
+            
           />
           <img
-            src="/img/sammy_laying.jpeg"
-            alt="sammy"
-            className="interestssammy"
+            src="/img/sammy/sammy_laying.jpeg"
+            alt="Sammy laying down and looking up"
+            
           />
           <img
-            src="/img/sammy_smiling.jpg"
-            alt="sammy"
-            className="interestssammy"
+            src="/img/sammy/sammy_smiling.jpg"
+            alt="Sammy smiling"
+            
           />
           <img
-            src="/img/sammy_sunset.jpeg"
-            alt="sammy"
-            className="interestssammy"
+            src="/img/sammy/sammy_sunset.jpeg"
+            alt="Sammy in the sunset"
+            
           />
           <img
-            src="/img/sammy_tiltinghead.jpeg"
-            alt="sammy"
-            className="interestssammy"
+            src="/img/sammy/sammy_tiltinghead.jpeg"
+            alt="Sammy tilting his head"
+            
           />
           <img
-            src="/img/sammy_tugging.jpeg"
-            alt="sammy"
-            className="interestssammy"
+            src="/img/sammy/sammy_tugging.jpeg"
+            alt="Sammy tugging on a rope toy"
+            
           />
           <img
-            src="/img/sammy_with_ball.jpeg"
-            alt="sammy"
-            className="interestssammy"
+            src="/img/sammy/sammy_with_ball.jpeg"
+            alt="Sammy with his ball"
+            
           />
           <img
-            src="/img/sammycouch.jpeg"
-            alt="sammy"
-            className="interestssammy"
+            src="/img/sammy/sammycouch.jpeg"
+            alt="Sammy on the couch"
           />
         </div>
       </div>
-    </div>
+    </body>
   );
 }

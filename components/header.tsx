@@ -31,7 +31,7 @@ export default function Header({ activeLink }: HeaderProps) {
   return (
     <div className="header">
       <a href="/." className="home">
-        <img src="/img/home.svg" alt="Home" className="home-icon" />
+        <img src="/img/icons/home.svg" alt="Home" className="home-icon" />
       </a>
 
       {/* Desktop navigation */}

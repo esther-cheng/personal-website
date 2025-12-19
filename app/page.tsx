@@ -25,16 +25,16 @@ export default function Home() {
 
           <div className="icons-container">
             <a href="https://github.com/esther-cheng">
-              <img src="/img/github.png" alt="github" className="icon" />
+              <img src="/img/icons/github.png" alt="github" className="icon" />
             </a>
             <a href="https://www.linkedin.com/in/estcheng/">
-              <img src="/img/linkedin.png" alt="linkedin" className="icon" />
+              <img src="/img/icons/linkedin.png" alt="linkedin" className="icon" />
             </a>
             <a href="/documents/EstherCheng.pdf">
-              <img src="/img/page.png" alt="resume" className="icon" />
+              <img src="/img/icons/page.png" alt="resume" className="icon" />
             </a>
             <a href="mailto:esther.cheng@duke.edu">
-              <img src="/img/email.png" alt="email" className="icon" />
+              <img src="/img/icons/email.png" alt="email" className="icon" />
             </a>
           </div>
         </div>

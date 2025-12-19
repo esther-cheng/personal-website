@@ -21,7 +21,7 @@ const allProjects: Project[] = [
   {
     id: 'p1',
     title: 'AI Course Advisor',
-    blurb: 'Visual analytics dashboard for time-series business metrics with custom forecasting.',
+    blurb: 'Course recommendation tool using retrieval-augmented generation (RAG)',
     images: ['/img/course-advisor/poster.png', '/img/course-advisor/onepager.png'],
     tech: ['React/TypeScript', 'OpenAI API', 'Python/Flask', 'MongoDB', 'Redis', 'Docker', 'Figma', 'Git', 'Duke OKD'],
     details:
@@ -32,11 +32,11 @@ const allProjects: Project[] = [
   {
     id: 'p2',
     title: 'CoLab Attendance Tracker',
-    blurb: 'A lightweight note-taking app focused on privacy-first syncing across devices.',
+    blurb: 'Tablet app for tracking attendance at Duke Innovation CoLab',
     images: ['/img/tablet/tablet1.png', '/img/tablet/tablet2.png', '/img/tablet/tablet3.png', '/img/tablet/tablet4.png', '/img/tablet/tablet5.png', '/img/tablet/tablet6.png',],
     tech: ['Next.js', 'MongoDB', 'Raspberry Pi', 'OAuth'],
     details:
-      'Offline-first experience with a compact sync protocol and optional end-to-end encryption. Features include markdown shortcuts, quick search, and customizable snippet templates.',
+      'Attendance tracking application connected to a card reader, Raspberry Pi, and tablet to track course attendance at the Duke Innovation CoLab. Admin users can view and manage attendance records in authenticated admin dashboard.',
     liveUrl: '#',
     repoUrl: '#',
   },
@@ -190,7 +190,7 @@ export default function ProjectsPageAlt() {
       <Header activeLink="projects" />
     <div className="max-w-6xl mx-auto p-6">
       <header className="mb-10">
-        <h1 className="project-title text-4xl font-extrabold tracking-tight">Past Work</h1>
+        <h1 className="text-4xl font-extrabold tracking-tight">Past Work</h1>
         <p className="mt-2 text-muted-foreground">Scroll down to reveal projects — toggle images to view photos</p>
       </header>
 
