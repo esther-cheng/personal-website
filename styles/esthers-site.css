@@ -91,6 +91,7 @@ html {
   margin: 0 auto;
   bottom: -50vh;
   transform: translateY(5vh); /* replicate your bottom:-5vh offset without absolute */
+  animation: fadein 2s ease, slide-in 2s ease;
 }
 
 .profile {
@@ -100,6 +101,7 @@ html {
   bottom: -2vh;
   width: calc(60vw + 80px);
   height: auto;
+  animation: fadein 2s ease, slide-up 2s ease;
 }
 
 .icons-container {
