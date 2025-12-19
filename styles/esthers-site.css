@@ -167,26 +167,34 @@ html {
 }
 
 .home-images-container {
-  width: 100vw;
+  position: relative;
   display: flex;
-  flex-direction: column;
-  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  /* padding-bottom: 5vh; optional breathing room for the blob offset */
 }
 
-#blob {
-  position: relative;
-  width: 50vw;
-  bottom: -30vw;
-  right: -2vw;
-  animation: fadein 2s ease, slide-in 2s ease;
+.home-image {
+    position: static;
 }
 
-#me {
-  position: relative;
-  width: 50vw;
-  bottom: 26vw;
-  right: -2vw;
-  animation: fadein 2s ease, slide-up 2s ease;
+.blob {
+  z-index: 0;
+  width: 50vw;     
+  height: auto;    
+  /* display: block; */
+  margin: 0 auto;
+  bottom: -50vh;
+  transform: translateY(5vh); /* replicate your bottom:-5vh offset without absolute */
+}
+
+.profile {
+  position: absolute; /* only the profile is absolute so it overlaps the blob */
+  z-index: 1;
+  right: 5vw;
+  bottom: -2vh;
+  width: calc(60vw + 80px);
+  height: auto;
 }
 
 .icons-container {

@@ -1,219 +1,277 @@
-/* header.css - Updated with responsive hamburger menu */
+/* header.css — Mobile-first, then Tablet (≥769px) and Desktop (≥1025px) */
+
+/* -------------------------
+   Theme variables (easy to tune)
+   ------------------------- */
+:root {
+  --header-height-mobile: 8vh;
+  --header-height-desktop: 10vh;
+
+  --home-padding-mobile: 0.75rem;
+  --home-padding-desktop: 1rem;
+
+  --home-icon-size-mobile: 3.25vh; /* will grow on larger screens */
+  --home-icon-size-tablet: 4vh;
+  --home-icon-size-desktop: 4.5vh;
+
+  --link-gap-mobile: 0.75rem;
+  --link-gap-desktop: 1.25rem;
+
+  --font-family: "Rubik", Arial, Helvetica, sans-serif;
+  --link-font-size-mobile: 1rem;   /* ~16px */
+  --link-font-size-tablet: 1.125rem;
+  --link-font-size-desktop: 1.2rem;
+
+  --hamburger-bar-width: 25px;
+  --hamburger-bar-height: 3px;
+  --hamburger-bar-gap: 3px;
+  --mobile-menu-min-width: 200px;
+}
+
+/* -------------------------
+   Base / Mobile styles (mobile-first)
+   ------------------------- */
+
+* { box-sizing: border-box; }
 
 .header {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   align-items: center;
-  overflow: hidden;
-  text-align: center;
-  height: 10vh;
-  /* margin-right: 2vw; */
-  width: 100vw;
+  justify-content: space-between;
+  height: var(--header-height-mobile);
+  width: 100%;
+  padding-inline: 1rem;
   position: relative;
+  text-align: center;
+  overflow: visible;
+  background: transparent; /* keep existing behavior */
 }
 
-a {
-  text-decoration: none;
-}
+/* reset simple anchor styles */
+a { text-decoration: none; color: inherit; }
 
 .home {
-  padding: 1vw;
-  border-radius: 2vw;
+  padding: var(--home-padding-mobile);
+  border-radius: 0.5rem;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-family);
 }
 
+/* scalable home icon */
 .home-icon {
-  height: 3vh;
-  width: 3vh;
+  height: var(--home-icon-size-mobile);
+  width: var(--home-icon-size-mobile);
   cursor: pointer;
+  display: block;
 }
 
+/* nav links (hidden on mobile) */
+.links {
+  display: none; /* mobile: hide links, show hamburger */
+  gap: var(--link-gap-mobile);
+  align-items: center;
+}
+
+/* header links default mobile styling (used also inside mobile menu) */
 .header a {
-  float: left;
-  padding: 1vw;
-  margin: 2vw;
-  font-family: "Rubik", Arial, Helvetica, sans-serif;
-  font-size: 1.75vw;
-  color: rgb(0, 0, 0);
+  display: inline-block;
+  padding: 0.5rem 0.75rem;
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: var(--link-font-size-mobile);
+  color: rgb(0,0,0);
   font-weight: 350;
   text-align: center;
+  border-radius: 0.5rem;
 }
 
+/* hover / active */
 .header a:hover {
-  border-radius: 2vh;
   background-color: #ffc0a1;
-  transition: background-color 0.5s ease;
-  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
-
 .header a.active {
   text-decoration: underline;
-  text-underline-offset: 1vh;
-  cursor: pointer;
+  text-underline-offset: 0.4rem;
 }
 
-.links {
-  float: right;
-  text-decoration: none;
-  display: flex;
-  gap: 1vw;
-}
-
-/* Hamburger menu styles (hidden by default) */
+/* -------------------------
+   Hamburger (visible on mobile)
+   ------------------------- */
 .hamburger {
-  display: none;
+  display: flex; /* mobile first: visible */
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
-  padding: 1vw;
-  position: relative;
+  padding: 0.5rem;
+  gap: var(--hamburger-bar-gap);
   z-index: 300;
+  background: transparent;
+  border: none;
 }
 
+/* bars */
 .hamburger span {
-  width: 25px;
-  height: 3px;
+  display: block;
+  width: var(--hamburger-bar-width);
+  height: var(--hamburger-bar-height);
   background-color: #000;
-  margin: 3px 0;
-  transition: 0.3s;
+  margin: 0;
   border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.2s ease, background-color 0.3s ease;
+  transform-origin: center;
   position: relative;
   z-index: 300;
 }
 
-/* Mobile menu styles */
-.mobile-menu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background-color: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  padding: 20px;
-  min-width: 200px;
-  z-index: 1000;
-}
-
-.mobile-menu.active {
-  display: block;
-}
-
-.mobile-menu a {
-  display: block;
-  padding: 15px 20px;
-  margin: 5px 0;
-  font-size: 18px;
-  text-align: left;
-  border-radius: 8px;
-  float: none;
-}
-
-.mobile-menu a:hover {
-  background-color: #ffc0a1;
-}
-
-/* Hamburger animation when active */
+/* hamburger active animation */
 .hamburger.active span:nth-child(1) {
-  transform: rotate(-45deg) translate(-5px, 6px);
+  transform: rotate(-45deg) translate(-4px, 6px);
   background-color: white;
 }
-
 .hamburger.active span:nth-child(2) {
   opacity: 0;
 }
-
 .hamburger.active span:nth-child(3) {
+  transform: rotate(45deg) translate(-4px, -6px);
   background-color: white;
-  transform: rotate(45deg) translate(-5px, -6px);
 }
 
-/* RESPONSIVE DESIGN */
+/* -------------------------
+   Mobile menu overlay (default hidden)
+   Full-screen overlay on very small phones by default,
+   but can be styled differently on larger viewports.
+   ------------------------- */
 
-/* Tablets */
-@media screen and (max-width: 1024px) {
-  .header a {
-    font-size: 2.2vw;
-    margin: 1.5vw;
-    /* padding: 0.8vw; */
-  }
-
-  .home-icon {
-    height: 4vh;
-    width: 4vh;
-  }
+.mobile-menu {
+  display: none; /* hidden by default */
+  position: fixed; /* overlay mobile-first for a clear UX */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  padding: 2rem;
+  background-color: rgba(0,0,0,0.85);
+  z-index: 200;
+  color: white;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: 2rem;
+  overflow-y: auto;
 }
 
-/* Mobile phones - show hamburger menu */
-@media screen and (max-width: 768px) {
+/* shown when toggled (JS toggles .active on both .hamburger and .mobile-menu) */
+.mobile-menu.active {
+  display: flex;
+}
+
+/* mobile menu links */
+.mobile-menu a {
+  display: block;
+  color: white;
+  font-size: 1.5rem;
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+  text-decoration: none;
+}
+
+/* small touch-friendly spacing */
+.mobile-menu a:hover {
+  background: transparent;
+  opacity: 0.9;
+}
+
+/* -------------------------
+   Tablet and up (>= 769px)
+   Show inline links, hide hamburger, adjust sizes
+   ------------------------- */
+@media (min-width: 769px) {
+  :root {
+    --home-icon-size-mobile: var(--home-icon-size-tablet);
+  }
+
+  .header {
+    padding-inline: 1.5rem;
+    height: calc(var(--header-height-mobile) + 1vh);
+  }
+
+  /* show the inline nav */
   .links {
-    display: none;
-  }
-
-  .hamburger {
     display: flex;
   }
 
-  .home-icon {
-    height: 5vh;
-    width: 5vh;
+  /* hide hamburger on larger screens */
+  .hamburger { display: none; }
+
+  /* position mobile-menu as dropdown (absolute) for non-overlay behavior */
+  .mobile-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: auto;
+    min-width: var(--mobile-menu-min-width);
+    max-width: 320px;
+    height: auto;
+    background-color: white;
+    color: inherit;
+    padding: 1.25rem;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    border-radius: 0.5rem;
+    display: none; /* still hidden until toggled */
+    align-items: stretch;
   }
+  .mobile-menu.active { display: block; }
+
+  .mobile-menu a { color: rgb(0,0,0); font-size: 1rem; padding: 0.5rem 0; }
+
+  /* link sizing for tablet */
+  .header a { font-size: var(--link-font-size-tablet); padding: 0.5rem 0.75rem; }
+  .links { gap: var(--link-gap-mobile); }
 }
 
-/* Very small phones */
-@media screen and (max-width: 480px) {
-  .header {
-    height: 8vh;
-    top: 10px;
-    width: 90vw;
-    position: relative;
-    justify-content: space-between;
-    align-self: center;
-    justify-self: center;
-    /* margin-right: 6vw; */
+/* -------------------------
+   Desktop and up (>= 1025px)
+   Larger spacing & typography
+   ------------------------- */
+@media (min-width: 1025px) {
+  :root {
+    --home-icon-size-mobile: var(--home-icon-size-desktop);
   }
+
+  .header {
+    height: var(--header-height-desktop);
+    padding-inline: 2rem;
+  }
+
+  .header a {
+    font-size: var(--link-font-size-desktop);
+    margin-inline: 0.5rem;
+    padding: 0.6rem 0.9rem;
+    font-weight: 400;
+  }
+
+  .links { gap: var(--link-gap-desktop); }
 
   .home {
-    padding: 2vw;
+    padding: var(--home-padding-desktop);
   }
+}
 
-  .home-icon {
-    height: 5vh;
-    width: 5vh;
-  }
-
+/* -------------------------
+   Very small devices adjust (optional)
+   If you still want specific tweaks under 420px
+   ------------------------- */
+@media (max-width: 420px) {
+  .header { padding-inline: 0.75rem; }
   .hamburger span {
-    width: 30px;
-    height: 4px;
+    width: 28px;
+    height: 3.5px;
   }
-
-  .mobile-menu {
-    position: fixed; /* relative to viewport, not parent */
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.8);
-    z-index: 200; /* ensure it's above all other layers */
-    /* display: none; default hidden */
-    color: white;
-    display: none;
-  }
-
-  .mobile-menu.active {
-    display: flex;
-    flex-direction: column;
-    /* justify-content: right;
-    align-items: right;
-    text-align: right; */
-  }
-
-  .mobile-menu a {
-    color: white;
-    font-size: 2rem;
-    /* margin: 1rem 0; */
-    margin: 4rem 3rem 0 0;
-    text-decoration: none;
-    text-align: right;
-  }
+  .mobile-menu a { font-size: 1.8rem; margin-top: 1rem; }
 }

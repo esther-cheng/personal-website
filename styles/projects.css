@@ -1,0 +1,82 @@
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+.project-container {
+  margin-top: 2vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.images-container {
+  margin-left: -3vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 50vw;
+  animation: slide-up 2s ease;
+}
+
+.course-advisor-demo {
+  width: 30vw;
+  height: auto;
+  border: 2px solid black;
+  border-radius: 5px;
+  margin: 2vh;
+}
+
+#video {
+  height: 16vw;
+}
+
+.projects-text-container {
+  margin-top: 5vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50vw;
+  animation: slide-in 2s ease;
+}
+
+.project-title {
+  font-family: "Grandstander";
+  font-size: 3vw;
+  font-weight: 400;
+  margin: 2vh;
+}
+
+.tools-used {
+  text-align: center;
+  font-family: "Rubik";
+  font-size: 1.75vw;
+  font-weight: 400;
+  font-style: italic;
+  margin: 2vh;
+}
+
+.project-blurb {
+  text-indent: 2vw;
+  font-family: "Rubik";
+  text-align: left;
+  font-size: 2vw;
+  font-weight: 350;
+  margin: 2vh;
+}

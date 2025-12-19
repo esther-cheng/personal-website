@@ -1,0 +1,40 @@
+h2 {
+  font-family: "Grandstander", Arial, Helvetica, sans-serif;
+  font-size: 3.5vw;
+  color: rgb(0, 0, 0);
+  font-weight: 300;
+  line-height: 30px;
+  margin-left: 2rem;
+}
+
+.crochetphotos {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 1vw;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+}
+
+.sammyphotos {
+  margin-top: 20px;
+  padding-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.interestssammy {
+  height: 20rem;
+  border-radius: 30px;
+  outline: 4px solid black;
+}
+
+.interestssammy:hover {
+  transform: scale(1.01);
+  filter: brightness(95%);
+}
