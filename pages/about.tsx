@@ -7,7 +7,7 @@ export default function About() {
   return (
     <body>
       <Header activeLink="about" />
-      <div className="appears">
+      <div className="about-content">
         <div className="about-container">
           <img
             src="/img/esther-table.jpg"
@@ -16,9 +16,10 @@ export default function About() {
           />
           <div className="about-text-container">
             <h2>
-              <i>Hello World!</i> I'm Esther, and I'm a current junior at Duke
+              <i>Hello World!</i> I'm Esther, and I'm a current senior at Duke
               University in Durham, North Carolina.
             </h2>
+            <br />
             <p>
               I am a computer science and psychology double major who loves to
               meet people, learn about their interests, and listen to their life
@@ -26,6 +27,7 @@ export default function About() {
               projects
               <a href="myinterests"> here</a>!)
             </p>
+            <br />
             <p>
               I am currently a student developer at the Duke University
               Innovation Co-Lab, where I hold office hours and work on exciting
@@ -46,6 +48,7 @@ export default function About() {
             <h2>
               What I've Been Up To
             </h2>
+            <br />
             <p>
               I just finished an internship with Deutsche Bank where I worked
               with the Global Receipts Platform team to further develop robust
@@ -53,12 +56,14 @@ export default function About() {
               designed an ESG analytics microservice for Deutsche Bank document
               analysis!
             </p>
+            <br />
             <p>
               This semester, I will be taking Psychology of Cooperation
               (PSY340S), Leadership and Collaboration (SOC227), Personality and
               Individual Differences (PSY321S), Warping Time in Fiction and Film
               (CINE190S), and Intro to Weightlifting (PHYSEDU113).
             </p>
+            <br />
             <p>
               I'll also be TAing Computer Architecture (CS/ECE250) for the
               fourth semester. I loved learning about the mechanisms behind
@@ -66,7 +71,7 @@ export default function About() {
             </p>
           </div>
         </div>
-
+        
         <a href="#" className="jump">
           Jump to top
         </a>

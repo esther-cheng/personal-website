@@ -1,16 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Grandstander:wght@300;400;500;600;700&family=Rubik:wght@300;400;500;600;700&display=swap");
 
+.about-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .about-container {
   display: flex;
   flex-direction: column;
-  overflow-y: hidden;
+  /* overflow-y: hidden; */
   /* scroll-snap-align: start; */
   /* scroll-snap-stop: normal; */
-  /* animation: slide-in-left 2s ease; */
-}
-
-#table-photo {
-  object-fit: contain;
+  animation: slide-in-left 2s ease;
 }
 
 .about-text-container {
@@ -20,9 +23,9 @@
   /* justify-content: space-evenly; */
   justify-content: center;
   align-items: center;
-  overflow: scroll;
+  /* overflow: scroll; */
   align-items: left;
-  padding: 2vw;
+  padding: 30px;
   text-align: center;
   line-height: 1.3;
   /* width: 60vw; */
@@ -30,26 +33,11 @@
 
 #second {
   margin-top: 5vh;
-}
-#second-text {
-  position: absolute;
-  left: 0;
-  margin-top: 5vh;
-  width: 60vw;
-  /* animation: slide-in 2s ease; */
-}
-
-#gardens-photo {
-  position: absolute;
-  height: 90vh;
-  object-fit: contain;
-  right: 0;
+  animation: slide-in 2s ease;
+  justify-content: center;
 }
 
 .jump {
-  position: relative;
-  justify-self: center;
-  align-self: center;
   margin: 2vw;
   padding: 1vw;
   font-weight: 300;
@@ -63,18 +51,27 @@
     flex-direction: row;
     justify-self: center;
     align-self: center;
-    /* justify-content: space-between; */
-    height: 90vh;
-    /* width: 100vw; */
-    /* margin-top: 3vh; */
-    /* overflow-y: scroll; */
-    /* scroll-snap-align: start;
-    scroll-snap-stop: normal; */
-    /* scroll-margin: 10px; */
-    /* animation: slide-in-left 2s ease; */
+    /* height: 90vh; */
+  }
+
+  #second {
+    flex-direction: row-reverse;
   }
 
   #second-text {
     background-color: transparent;
+  }
+
+  #table-photo {
+    object-fit: cover;
+    height: auto;
+    max-width: 40vw;
+  }
+
+  #gardens-photo {
+    object-fit: cover;
+    height: auto;
+    max-width: 40vw;
+    /* align-self: center; */
   }
 }
