@@ -1,7 +1,26 @@
 @import url("https://fonts.googleapis.com/css2?family=Grandstander:wght@300;400;500;600;700&family=Rubik:wght@300;400;500;600;700&display=swap");
 
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
 .project-container {
   margin-top: 2vh;
+  margin-bottom: 6vh;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -18,16 +37,135 @@
   animation: slide-up 2s ease;
 }
 
-.course-advisor-demo {
-  width: 30vw;
+.carousel-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 100%;
+}
+
+.carousel-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  width: 100%;
+}
+
+.carousel-slide-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 380px;
+  width: 32vw;
+  max-width: 440px;
+  flex-shrink: 0;
+}
+
+.pbm-carousel-image {
+  max-height: 100%;
+  max-width: 100%;
   height: auto;
+  width: auto;
+  object-fit: contain;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.course-advisor-demo {
+  max-height: 100%;
+  max-width: 100%;
+  height: auto;
+  width: auto;
+  object-fit: contain;
   border: 2px solid black;
-  border-radius: 5px;
-  margin: 2vh;
+  border-radius: 6px;
+  background-color: #ffffff;
 }
 
 #video {
-  height: 16vw;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: 250px;
+  height: auto;
+}
+
+.carousel-btn {
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 2px solid black;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: all 0.2s ease;
+  user-select: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  flex-shrink: 0;
+}
+
+.carousel-btn:hover {
+  background-color: #ffc0a1;
+  transform: scale(1.1);
+}
+
+.carousel-dots {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  margin-top: 14px;
+  margin-bottom: 12px;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1.5px solid black;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.25s ease;
+}
+
+.carousel-dot.active {
+  background-color: black;
+  width: 26px;
+  border-radius: 6px;
+}
+
+.carousel-dot:hover {
+  background-color: #ffc0a1;
+}
+
+.project-divider {
+  width: 90vw;
+  margin: 6vh auto;
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.jump {
+  display: block;
+  padding: 4vw;
+  text-align: center;
+  font-family: "Rubik", Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  color: black;
+}
+
+.jump:hover {
+  text-decoration: underline;
 }
 
 .projects-text-container {
@@ -38,6 +176,13 @@
   align-items: center;
   width: 50vw;
   animation: slide-in 2s ease;
+}
+
+.project-title {
+  font-family: "Grandstander";
+  font-size: 3vw;
+  font-weight: 400;
+  margin: 2vh;
 }
 
 .tools-used {
@@ -56,4 +201,176 @@
   font-size: 2vw;
   font-weight: 350;
   margin: 2vh;
+}
+
+.project-action-btn {
+  font-family: "Rubik", Arial, Helvetica, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 450;
+  padding: 0.35rem 0.85rem;
+  border: 2px solid black;
+  border-radius: 6px;
+  background-color: #ffffff;
+  color: #000000;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all 0.2s ease;
+  user-select: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.project-action-btn:hover {
+  background-color: #ffc0a1;
+  transform: translateY(-1px);
+}
+
+.carousel-zoomable {
+  cursor: zoom-in;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.carousel-zoomable:hover {
+  transform: scale(1.02);
+}
+
+.carousel-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.82);
+  backdrop-filter: blur(4px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2vw;
+  animation: fadein 0.2s ease;
+}
+
+.carousel-modal-content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 90vw;
+  max-height: 85vh;
+}
+
+.carousel-modal-image {
+  max-width: 85vw;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  background-color: #ffffff;
+  border: 2px solid #000000;
+  user-select: none;
+}
+
+.carousel-modal-close {
+  position: absolute;
+  top: 24px;
+  right: 28px;
+  width: 42px;
+  height: 42px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 2px solid #000000;
+  border-radius: 50%;
+  font-size: 24px;
+  line-height: 1;
+  font-weight: bold;
+  color: #000000;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  z-index: 10001;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-modal-close:hover {
+  background-color: #ffc0a1;
+  transform: scale(1.1);
+}
+
+.carousel-modal-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 2px solid #000000;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  transition: all 0.2s ease;
+  user-select: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-modal-btn:hover {
+  background-color: #ffc0a1;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-modal-btn.prev {
+  left: 28px;
+}
+
+.carousel-modal-btn.next {
+  right: 28px;
+}
+
+.carousel-modal-caption {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #ffffff;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-family: "Rubik", Arial, Helvetica, sans-serif;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.carousel-modal-counter {
+  opacity: 0.75;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 768px) {
+  .carousel-wrapper {
+    gap: 8px;
+  }
+  .carousel-slide-content {
+    height: 300px;
+    width: 70vw;
+    max-width: 100%;
+  }
+  #video {
+    max-height: 200px;
+  }
+  .carousel-modal-btn.prev {
+    left: 12px;
+  }
+  .carousel-modal-btn.next {
+    right: 12px;
+  }
+  .carousel-modal-close {
+    top: 16px;
+    right: 16px;
+  }
 }

@@ -1,7 +1,7 @@
-import Image from 'next/image'
-import { useEffect, useRef, useState } from 'react'
+import { Fragment, useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import Header from '../components/header'
+import Carousel, { CarouselSlide } from '../components/carousel'
 import '../styles/projects.css'
 import '../app/globals.css'
 
@@ -10,24 +10,94 @@ export type Project = {
   title: string
   blurb: string
   images: string[]
+  slides?: CarouselSlide[]
   tech: string[]
   details?: string
   liveUrl?: string
+  demoUrl?: string
   repoUrl?: string
+  permalink?: string
 }
 
 // A larger sample set so the scroll-reveal feels meaningful
 const allProjects: Project[] = [
   {
+    id: 'p0',
+    title: 'Pickleball Matchmaker',
+    blurb:
+      'Full-stack platform designed to eliminate the chaos of managing social pickleball sessions, open play, and tournaments.',
+    images: [
+      '/img/pickleball-matchmaker/pbm1.png',
+      '/img/pickleball-matchmaker/pbm2.png',
+      '/img/pickleball-matchmaker/pbm3.png',
+      '/img/pickleball-matchmaker/pbm4.png',
+      '/img/pickleball-matchmaker/pbm5.png',
+    ],
+    slides: [
+      {
+        type: 'image',
+        src: '/img/pickleball-matchmaker/pbm1.png',
+        alt: 'Pickleball Matchmaker - Welcome screen',
+      },
+      {
+        type: 'image',
+        src: '/img/pickleball-matchmaker/pbm2.png',
+        alt: 'Pickleball Matchmaker - Profile and Chemistry Spotlight',
+      },
+      {
+        type: 'image',
+        src: '/img/pickleball-matchmaker/pbm3.png',
+        alt: 'Pickleball Matchmaker - Rating Over Time and Session History',
+      },
+      {
+        type: 'image',
+        src: '/img/pickleball-matchmaker/pbm4.png',
+        alt: 'Pickleball Matchmaker - Group Roster Management',
+      },
+      {
+        type: 'image',
+        src: '/img/pickleball-matchmaker/pbm5.png',
+        alt: 'Pickleball Matchmaker - Session Format Selection',
+      },
+    ],
+    tech: [
+      'Next.js',
+      'React/TypeScript',
+      'PostgreSQL (Neon)',
+    ],
+    details:
+      'Pickleball Matchmaker is a full-stack platform designed to eliminate the chaos of managing social pickleball sessions, open play, and tournaments. Powered by a custom Monte Carlo matchmaking engine, the application dynamically generates balanced court lineups based on Elo skill ratings, enforces fair rotation without consecutive bench sits, and adapts to partner requests and odd player counts. The platform features live score entry, interactive tournament bracket management, player profile dashboards with rating progression graphs, and an expectation-adjusted doubles synergy algorithm that calculates chemistry between partners over time.',
+    liveUrl: 'https://db-pickleball.netlify.app/',
+    repoUrl: 'https://github.com/NathanG1en/Pickleball-Matcher',
+  },
+  {
     id: 'p1',
     title: 'AI Course Advisor',
     blurb: 'Course recommendation tool using retrieval-augmented generation (RAG)',
     images: ['/img/course-advisor/poster.png', '/img/course-advisor/onepager.png'],
+    slides: [
+      {
+        type: 'iframe',
+        src: 'https://drive.google.com/file/d/1CDa8MJsXw2Z2-CWd-Ap1xEARrrFis3MP/preview',
+        alt: 'AI Course Advisor Demo Video',
+        allow: 'fullscreen',
+        id: 'video',
+      },
+      {
+        type: 'image',
+        src: '/img/course-advisor/poster.png',
+        alt: 'AI Course Advisor Poster',
+      },
+      {
+        type: 'image',
+        src: '/img/course-advisor/onepager.png',
+        alt: 'AI Course Advisor One Pager',
+      },
+    ],
     tech: ['React/TypeScript', 'OpenAI API', 'Python/Flask', 'MongoDB', 'Redis', 'Docker', 'Figma', 'Git', 'Duke OKD'],
     details:
       'Our project integrated Duke\'s course catalog with a fine-tuned version of OpenAI\'s gpt-3.5-turbo model. We semantically searched our database for vector representations closest to the user\'s query (RAG) to generate relevant courses. Throughout the summer, we worked closely with the Duke University Registrar and the Academic Advising Center to make a tool that was accessible, useful, and accurate for students and advisors alike.',
-    liveUrl: 'https://drive.google.com/drive/folders/1bVJxTTljrxHJ367_svXWPMSvE4fS1OI3?usp=sharing',
-    repoUrl: '#',
+    demoUrl: 'https://drive.google.com/drive/folders/1bVJxTTljrxHJ367_svXWPMSvE4fS1OI3?usp=sharing',
   },
   {
     id: 'p2',
@@ -37,8 +107,6 @@ const allProjects: Project[] = [
     tech: ['Next.js', 'MongoDB', 'Raspberry Pi', 'OAuth'],
     details:
       'Attendance tracking application connected to a card reader, Raspberry Pi, and tablet to track course attendance at the Duke Innovation CoLab. Admin users can view and manage attendance records in authenticated admin dashboard.',
-    liveUrl: '#',
-    repoUrl: '#',
   },
   {
     id: 'p3',
@@ -56,111 +124,8 @@ const allProjects: Project[] = [
     tech: ['Node.js', 'Express', 'React', 'MongoDB'],
     details:
       'Connecting users to polling location and candidate information during the 2024 election',
-    liveUrl: '#',
-    repoUrl: '#',
   }
 ]
-
-// Gallery component: simple carousel with thumbnails and optional fullscreen modal
-function Gallery({ projectId, images }: { projectId: string; images: string[] }) {
-  const [index, setIndex] = useState(0)
-  const [isFullscreen, setFullscreen] = useState(false)
-
-  useEffect(() => {
-    // reset index when images change (useful if reusing component)
-    setIndex(0)
-  }, [projectId])
-
-  function prev() {
-    setIndex((i) => (i - 1 + images.length) % images.length)
-  }
-  function next() {
-    setIndex((i) => (i + 1) % images.length)
-  }
-
-  return (
-    <div className="gallery">
-      <div className="relative rounded-2xl overflow-hidden shadow-md">
-        <div className="relative h-60 md:h-72 w-full cursor-pointer" onClick={() => setFullscreen(true)}>
-          <Image src={images[index]} alt={`Project image ${index + 1}`} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" />
-        </div>
-
-        <div className="absolute top-3 right-3 flex gap-2">
-          <button
-            onClick={(e) => {
-              e.stopPropagation()
-              prev()
-            }}
-            aria-label="Previous image"
-            className="p-2 rounded-full bg-white/80 dark:bg-black/50 border"
-          >
-            ‹
-          </button>
-
-          <button
-            onClick={(e) => {
-              e.stopPropagation()
-              next()
-            }}
-            aria-label="Next image"
-            className="p-2 rounded-full bg-white/80 dark:bg-black/50 border"
-          >
-            ›
-          </button>
-        </div>
-      </div>
-
-      {/* thumbnails */}
-      <div className="mt-3 flex gap-2 overflow-x-auto">
-        {images.map((src, i) => (
-          <button
-            key={src}
-            onClick={() => setIndex(i)}
-            className={`flex-none rounded-md overflow-hidden border ${i === index ? 'ring-2 ring-sky-400' : 'opacity-80'}`}
-            aria-label={`Show image ${i + 1}`}
-          >
-            <div className="relative h-16 w-28">
-              <Image src={src} alt={`thumb ${i + 1}`} fill sizes="112px" className="object-cover" />
-            </div>
-          </button>
-        ))}
-      </div>
-
-      {/* fullscreen modal */}
-      {isFullscreen && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-6"
-          onClick={() => setFullscreen(false)}
-        >
-          <div className="relative w-full max-w-4xl rounded-lg bg-white/5" onClick={(e) => e.stopPropagation()}>
-            <div className="relative h-[65vh] w-full">
-              <Image src={images[index]} alt={`Project image ${index + 1} fullscreen`} fill sizes="(min-width: 1024px) 80vw, 100vw" className="object-contain" />
-            </div>
-
-            <div className="absolute top-4 right-4 flex gap-2">
-              <button onClick={() => setFullscreen(false)} className="px-3 py-1 rounded bg-white/90">Close</button>
-            </div>
-
-            <div className="absolute left-3 top-1/2 -translate-y-1/2">
-              <button onClick={prev} className="px-3 py-1 rounded bg-white/90">‹</button>
-            </div>
-            <div className="absolute right-3 top-1/2 -translate-y-1/2">
-              <button onClick={next} className="px-3 py-1 rounded bg-white/90">›</button>
-            </div>
-
-            <div className="p-3 flex items-center justify-center gap-2">
-              {images.map((_, i) => (
-                <button key={i} onClick={() => setIndex(i)} className={`h-2 w-6 rounded ${i === index ? 'bg-white' : 'bg-white/30'}`} aria-label={`Go to image ${i + 1}`} />
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
-  )
-}
 
 export default function ProjectsPageAlt() {
   const BATCH = 3
@@ -198,68 +163,106 @@ export default function ProjectsPageAlt() {
         {allProjects.slice(0, visibleCount).map((proj, idx) => {
           const isLeft = idx % 2 === 0
           return (
-            <motion.article
-              key={proj.id}
-              className={`flex flex-col md:flex-row items-center md:items-stretch gap-6 md:gap-8 ${isLeft ? 'md:flex-row' : 'md:flex-row-reverse'}`}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.25 }}
-              transition={{ duration: 0.6, ease: 'easeOut' }}
-            >
-              {/* Image / Gallery column */}
-              <div className="md:w-1/2 w-full">
-                <Gallery projectId={proj.id} images={proj.images} />
-              </div>
-
-              {/* Content column */}
-              <div className="md:w-1/2 w-full">
-                <h2 className="text-2xl font-semibold">{proj.title}</h2>
-                <p className="mt-2 text-slate-600 dark:text-slate-300">{proj.blurb}</p>
-
-                <ul className="mt-4 flex flex-wrap gap-2">
-                  {proj.tech.map((t) => (
-                    <li key={t} className="text-xs px-2 py-1 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-                      {t}
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="mt-4 flex items-center gap-3">
-                  {proj.liveUrl && (
-                    <a href={proj.liveUrl} target="_blank" rel="noreferrer" className="text-sm underline-offset-2 text-sky-600 hover:underline">
-                      Demo
-                    </a>
-                  )}
-
-                  <button
-                    onClick={() => setExpandedId(expandedId === proj.id ? null : proj.id)}
-                    aria-expanded={expandedId === proj.id}
-                    aria-controls={`proj-${proj.id}-details`}
-                    className="inline-flex items-center gap-2 text-sm font-medium px-3 py-1 rounded-md border bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700"
-                  >
-                    {expandedId === proj.id ? 'Less' : 'More'}
-                  </button>
+            <Fragment key={proj.id}>
+              <motion.article
+                id={proj.id}
+                className={`flex flex-col md:flex-row items-center md:items-stretch gap-6 md:gap-8 ${isLeft ? 'md:flex-row' : 'md:flex-row-reverse'}`}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.25 }}
+                transition={{ duration: 0.6, ease: 'easeOut' }}
+              >
+                {/* Image / Carousel column */}
+                <div className="md:w-1/2 w-full">
+                  <Carousel
+                    slides={
+                      proj.slides ??
+                      proj.images.map((src, i) => ({
+                        type: 'image',
+                        src,
+                        alt: `${proj.title} slide ${i + 1}`,
+                      }))
+                    }
+                  />
                 </div>
+
+                {/* Content column */}
+                <div className="md:w-1/2 w-full">
+                  <h2 className="text-2xl font-semibold">{proj.title}</h2>
+                  <p className="mt-2 text-slate-600 dark:text-slate-300">{proj.blurb}</p>
+
+                  <ul className="mt-4 flex flex-wrap gap-2">
+                    {proj.tech.map((t) => (
+                      <li key={t} className="text-xs px-2 py-1 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                        {t}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="mt-4 flex flex-wrap items-center gap-3">
+                    {proj.liveUrl && proj.liveUrl !== '#' && (
+                      <a
+                        href={proj.liveUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="project-action-btn"
+                      >
+                        Live
+                      </a>
+                    )}
+
+                    {proj.demoUrl && proj.demoUrl !== '#' && (
+                      <a
+                        href={proj.demoUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="project-action-btn"
+                      >
+                        Demo
+                      </a>
+                    )}
+
+                    {proj.repoUrl && proj.repoUrl !== '#' && (
+                      <a
+                        href={proj.repoUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="project-action-btn"
+                      >
+                        GitHub
+                      </a>
+                    )}
+
+                    <button
+                      onClick={() => setExpandedId(expandedId === proj.id ? null : proj.id)}
+                      aria-expanded={expandedId === proj.id}
+                      aria-controls={`proj-${proj.id}-details`}
+                      className="project-action-btn"
+                    >
+                      <span>{expandedId === proj.id ? 'Less' : 'More'}</span>
+                      <span className="text-[10px] leading-none transition-transform duration-200">
+                        {expandedId === proj.id ? '▲' : '▼'}
+                      </span>
+                    </button>
+                  </div>
 
                 {expandedId === proj.id && (
                   <div id={`proj-${proj.id}-details`} className="mt-4 text-sm text-slate-700 dark:text-slate-300 border-t pt-4">
                     <p className="leading-relaxed">{proj.details}</p>
 
-                    <div className="mt-3 flex gap-3">
-                      {proj.repoUrl && (
-                        <a href={proj.repoUrl} target="_blank" rel="noreferrer" className="text-xs font-medium underline">
-                          View repo
+                    {proj.permalink && proj.permalink !== '#' && (
+                      <div className="mt-3 flex gap-3">
+                        <a href={proj.permalink} target="_blank" rel="noreferrer" className="text-xs text-slate-500 dark:text-slate-400 hover:underline">
+                          Permalink
                         </a>
-                      )}
-
-                      <a href={`#${proj.id}`} className="text-xs text-slate-500 dark:text-slate-400">
-                        Permalink
-                      </a>
-                    </div>
+                      </div>
+                    )}
                   </div>
                 )}
               </div>
             </motion.article>
+            {idx < visibleCount - 1 && <hr className="project-divider" />}
+          </Fragment>
           )
         })}
 
